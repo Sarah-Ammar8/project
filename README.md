@@ -1,148 +1,205 @@
 # Base Backend Service – Technical Documentation
 
-## 1. وصف المشروع (What is this project?)
-هذا المشروع عبارة عن خدمة Backend بسيطة تم تطويرها لأغراض تعليمية ضمن المرحلة التأسيسية، وتهدف إلى توضيح كيفية بناء خدمة برمجية قابلة للتشغيل والاستخدام داخل تطبيق أو نظام أكبر.
+## 1. Project Description (What is this project?)
 
-يركّز المشروع على:
-- تحويل الكود إلى خدمة (Service-oriented thinking)
-- بناء RESTful API
-- تنظيم الكود وفق مبادئ Clean Code
-- التشغيل في بيئة ثابتة باستخدام Docker
+This project is a simple Backend service developed for educational purposes as part of the foundational phase. It aims to demonstrate how to build a runnable and usable software service that can be integrated into a larger application or system.
 
-المشروع لا يركّز على بناء نموذج ذكاء اصطناعي، بل على إنشاء البنية البرمجية التي يمكن دمج نموذج AI داخلها لاحقًا.
+The project focuses on:
 
----
+* Transforming code into a service (service-oriented thinking)
+* Building a RESTful API
+* Organizing code according to Clean Code principles
+* Running the application in a consistent environment using Docker
 
-## 2. الأدوات والتقنيات المستخدمة (Tools & Technologies)
-
-### لغة البرمجة
-- **Python 3.13**
-
-### إطار العمل (Framework)
-- **FastAPI**
-  - لبناء RESTful APIs
-  - دعم التحقق من البيانات (Validation)
-  - توليد توثيق تلقائي (Swagger)
-
-### خادم التشغيل
-- **Uvicorn**
-  - ASGI Server لتشغيل تطبيق FastAPI
-
-### إدارة الإصدارات
-- **Git**
-- **GitHub**
-  - إدارة المستودع
-  - تتبع التغييرات عبر commits تدريجية
-
-### الحاويات
-- **Docker**
-  - تشغيل التطبيق داخل Container
-  - ضمان ثبات بيئة التشغيل
+The project does not focus on building an artificial intelligence model; instead, it focuses on creating the software infrastructure in which an AI model can be integrated later.
 
 ---
 
-## 3. المعمارية (Architecture)
+## 2. Tools & Technologies
 
-يعتمد المشروع على معمارية طبقية بسيطة (Layered Architecture) تفصل المسؤوليات بشكل واضح:
+### Programming Language
 
-API Layer → routes.py
-Business Logic → services.py
-Data Models → schemas.py
-Error Handling → errors.py
-Configuration → config.py
-Application Boot → main.py
+* **Python 3.13**
 
+### Framework
 
-### شرح المعمارية:
-- **API Layer**: مسؤولة عن استقبال الطلبات HTTP وإرجاع الاستجابات.
-- **Service Layer**: تحتوي منطق الأعمال المستقل عن HTTP.
-- **Schemas**: تعريف نماذج البيانات والتحقق من المدخلات والمخرجات.
-- **Error Layer**: إدارة الأخطاء المتوقعة بشكل مركزي.
-- **Main Application**: نقطة تشغيل التطبيق وربط جميع المكونات.
+* **FastAPI**
 
-هذا الفصل يسهّل:
-- قراءة الكود
-- اختبار المكونات
-- التوسع المستقبلي (إضافة DB أو AI Model)
+  * For building RESTful APIs
+  * Data validation support
+  * Automatic API documentation generation (Swagger)
+
+### Application Server
+
+* **Uvicorn**
+
+  * ASGI server for running FastAPI applications
+
+### Version Control
+
+* **Git**
+* **GitHub**
+
+  * Repository management
+  * Tracking changes through incremental commits
+
+### Containerization
+
+* **Docker**
+
+  * Running the application inside a container
+  * Ensuring a consistent and reproducible runtime environment
 
 ---
 
-## 4. هيكلية المشروع (Project Structure)
+## 3. Architecture
 
+The project follows a simple layered architecture that clearly separates responsibilities:
+
+```
+API Layer           → routes.py
+Business Logic      → services.py
+Data Models         → schemas.py
+Error Handling      → errors.py
+Configuration       → config.py
+Application Boot    → main.py
+```
+
+### Architecture Explanation:
+
+* **API Layer**: Responsible for receiving HTTP requests and returning responses.
+* **Service Layer**: Contains business logic independent of HTTP.
+* **Schemas**: Defines data models and validates request and response data.
+* **Error Layer**: Manages expected application errors in a centralized way.
+* **Main Application**: The entry point that initializes and connects all components.
+
+This separation makes it easier to:
+
+* Read and understand the code
+* Test individual components
+* Extend the project in the future (e.g., adding a database or AI model)
+
+---
+
+## 4. Project Structure
+
+```
 project-root/
 │
 ├── app/
-│ ├── init.py
-│ ├── main.py # Entry point
-│ ├── routes.py # API endpoints
-│ ├── services.py # Business logic
-│ ├── schemas.py # Request/Response models
-│ ├── errors.py # Centralized error handling
-│ └── config.py # Application configuration
+│   ├── __init__.py
+│   ├── main.py        # Entry point
+│   ├── routes.py      # API endpoints
+│   ├── services.py    # Business logic
+│   ├── schemas.py     # Request/Response models
+│   ├── errors.py      # Centralized error handling
+│   └── config.py      # Application configuration
 │
 ├── Dockerfile
 ├── .dockerignore
 ├── .gitignore
 ├── requirements.txt
 └── README.md
+```
 
 ---
 
-## 5. المتطلبات (Requirements)
+## 5. Requirements
 
-### للتشغيل المحلي:
-- Python 3.13
-- pip
-- Git
+### For local execution:
 
-### للتشغيل باستخدام Docker:
-- Docker Desktop
+* Python 3.13
+* pip
+* Git
+
+### For Docker execution:
+
+* Docker Desktop
 
 ---
 
-## 6. طريقة التشغيل محليًا (Local Run)
+## 6. Local Run Instructions
 
-1. تثبيت المتطلبات:
+1. Install dependencies:
+
+```bash
 pip install -r requirements.txt
+```
 
-2. تشغيل التطبيق:
+2. Run the application:
+
+```bash
 uvicorn app.main:app --reload
+```
 
-3. الوصول إلى الخدمة:
+3. Access the service:
+
 Health Check:
+
+```
 http://127.0.0.1:8000/health
+```
 
-توثيق API (Swagger):
+API Documentation (Swagger):
+
+```
 http://127.0.0.1:8000/docs
+```
 
-## 7. استخدام الـ API (API Usage)
-Health Endpoint :
-(Request)
+---
+
+## 7. API Usage
+
+### Health Endpoint
+
+**Request**
+
+```
 GET /health
+```
 
-(Response)
+**Response**
+
+```json
 {
   "status": "ok"
 }
+```
 
-## 8. التشغيل باستخدام Docker (Docker Run)
-1. بناء الصورة:
+---
+
+## 8. Running with Docker
+
+1. Build the image:
+
+```bash
 docker build -t project-backend .
+```
 
-2. تشغيل الحاوية:
+2. Run the container:
+
+```bash
 docker run --rm -p 8000:8000 project-backend
+```
 
-3. اختبار الخدمة:
+3. Test the service:
+
+```
 http://127.0.0.1:8000/health
 http://127.0.0.1:8000/docs
+```
 
-## 9. إدارة الأخطاء (Error Handling)
-يعتمد المشروع على نظام أخطاء مركزي:
+---
 
-يتم تعريف الأخطاء المتوقعة داخل errors.py
-يتم تحويلها إلى HTTP responses موحّدة في main.py
-جميع الأخطاء ترجع بصيغة JSON ثابتة
+## 9. Error Handling
 
-هذا الأسلوب يمنع:
-تكرار try/except في كل endpoint
-تسريب تفاصيل أخطاء غير ضرورية للمستخدم
+The project relies on a centralized error-handling system:
+
+* Expected errors are defined in `errors.py`
+* These errors are converted into unified HTTP responses in `main.py`
+* All errors are returned in a consistent JSON format
+
+This approach prevents:
+
+* Repeating try/except blocks in every endpoint
+* Exposing unnecessary internal error details to the user
