@@ -84,7 +84,7 @@ This separation makes it easier to:
 ## 4. Project Structure
 
 ```
-project-root/
+project/
 │
 ├── app/
 │   ├── __init__.py
